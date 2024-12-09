@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Eight Ball</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Magic Eight Ball</h1>
+        <div id="ball-window" class="ball-window">Ask a question and shake the ball!</div>
+        <button id="ask-btn">Ask the Magic Eight Ball</button>
+        <button id="stop-btn">Stop</button>
+    </div>
+
+    <script>
+        // Predefined answers
+        const answers = [
+            "Yes, absolutely!",
+            "No, definitely not.",
+            "Ask again later.",
+            "It is certain.",
+            "Don't count on it.",
+            "My sources say no.",
+            "Outlook is good.",
+            "Reply hazy, try again."
+        ];
+
+        const askButton = document.getElementById("ask-btn");
+        const stopButton = document.getElementById("stop-btn");
+        const ballWindow = document.getElementById("ball-window");
+
+        // Prompt the user for questions and display a random answer
+        askButton.addEventListener("click", () => {
+            const question = prompt("What is your question for the Magic Eight Ball?");
+            if (question) {
+                const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+                ballWindow.textContent = randomAnswer;
+            } else {
+                ballWindow.textContent = "You must ask a question!";
+            }
+        });
+
+        // Stop button to exit the application
+        stopButton.addEventListener("click", () => {
+            ballWindow.textContent = "Farewell, seeker of answers! Come back anytime.";
+            askButton.disabled = true;
+            stopButton.disabled = true;
+        });
+    </script>
+</body>
+</html>
